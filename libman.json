@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "firebase@9.14.0",
+      "destination": "wwwroot/firebase/",
+      "files": [
+        "firebase-app.js",
+        "firebase-analytics.js",
+        "firebase-auth.js",
+        "firebase-auth.min.js"
+      ]
+    }
+  ]
+}
