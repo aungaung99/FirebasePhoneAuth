@@ -1,6 +1,6 @@
 ﻿// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+import { getAuth, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,6 +18,22 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
+auth.languageCode = 'mm';
 
-console.log(app);
+const phoneNumber = "+959885171061s";
+const appVerifier = window.recaptchaVerifier;
+appVerifier.verfiy();
+signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+    .then((confirmationResult) => {
+        console.log('Hello');
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        //window.confirmationResult = confirmationResult;
+        //console.log(confirmationResult);
+        // ...
+    }).catch((error) => {
+        console.error('Error', error.message);
+        // Error; SMS not sent
+        // ...
+    });
